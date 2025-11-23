@@ -23,6 +23,7 @@ __Algorithm__:
 4. Generate Carrier Signal: Define the carrier signal as a cosine wave. 
 5. Modulate Signal: Apply the AM formula to obtain the modulated signal. 
 6. Plot the Signals: Use Matplotlib to plot the message signal, carrier signal, and modulated signal.
+
 __Program__:
 ```
 import numpy as np
