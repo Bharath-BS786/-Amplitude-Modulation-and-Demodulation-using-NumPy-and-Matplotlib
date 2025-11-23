@@ -23,10 +23,75 @@ __Algorithm__:
 4. Generate Carrier Signal: Define the carrier signal as a cosine wave. 
 5. Modulate Signal: Apply the AM formula to obtain the modulated signal. 
 6. Plot the Signals: Use Matplotlib to plot the message signal, carrier signal, and modulated signal.
+__Program__:
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+Am =   14.5   # Message amplitude
+Ac = 29     # Carrier amplitude
+fm = 570       # Message frequency
+fc = 5700       # Carrier frequency
+fs = 57000      # Sampling frequency (must be high for smooth signal)
+
+t = np.arange(0, 0.01, 1/fs)   # Time vector
+
+# Message Signal
+message = Am * np.cos(2 * np.pi * fm * t)
+
+# Carrier Signal
+carrier = Ac * np.cos(2 * np.pi * fc * t)
+
+# Modulation Index
+m = Am / Ac
+
+# AM Modulated Signal
+am_signal = Ac * (1 + m * np.cos(2 * np.pi * fm * t)) * np.cos(2 * np.pi * fc * t)
+
+# Demodulation (Envelope Detector)
+demodulated = np.abs(am_signal)
+
+# Plotting
+plt.figure(figsize=(12,10))
+
+plt.subplot(4,1,1)
+plt.plot(t, message)
+plt.title("Message Signal")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+
+plt.subplot(4,1,2)
+plt.plot(t, carrier)
+plt.title("Carrier Signal")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+
+plt.subplot(4,1,3)
+plt.plot(t, am_signal)
+plt.title("AM Modulated Signal")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+
+plt.subplot(4,1,4)
+plt.plot(t, demodulated)
+plt.title("Demodulated Signal (Envelope)")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+
+plt.tight_layout()
+plt.show()
+```
+__Calculation__:
+![WhatsApp Image 2025-11-23 at 15 32 36_b244032a](https://github.com/user-attachments/assets/7a79f02a-f146-480b-8a6c-105cf6d25623)
+![WhatsApp Image 2025-11-23 at 15 32 36_41295197](https://github.com/user-attachments/assets/8c59ad73-62e3-4a49-935a-dbe9236fec4b)
 
  __Output__:
+
+<img width="1189" height="990" alt="image" src="https://github.com/user-attachments/assets/20bd2eb5-81ae-4d8b-8395-91acf8c23555" />
 
 
  __Result__:
 
+![WhatsApp Image 2025-11-23 at 15 32 36_faa86d63](https://github.com/user-attachments/assets/a98d106b-dbc5-466f-bcbc-a36858351eac)
 
